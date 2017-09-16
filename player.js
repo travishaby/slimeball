@@ -1,8 +1,9 @@
 class Player {
-  constructor(name, x, y) {
+  constructor(name, x, y, color) {
     this.name = name
     this.x = x
     this.y = y
+    this.color = color
     this.xVelocity = 0
     this.yVelocity = 0
     this.directionsToGrid = {
@@ -16,7 +17,7 @@ class Player {
   draw(canvas) {
     canvas.beginPath();
     canvas.arc(this.x, this.y, 50, Math.PI, 2 * Math.PI, false);
-    canvas.fillStyle = 'blue';
+    canvas.fillStyle = this.color;
     canvas.fill();
   }
 
