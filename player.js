@@ -3,6 +3,14 @@ class Player {
     this.name = name
     this.x = x
     this.y = y
+    this.xVelocity = 0
+    this.yVelocity = 0
+    this.directionsToGrid = {
+      left: { axis: 'x', direction: -1 },
+      right: { axis: 'x', direction: 1 },
+      up: { axis: 'y', direction: -1 },
+      down: { axis: 'y', direction: 1 }
+    }
   }
 
   draw(canvas) {
@@ -12,16 +20,21 @@ class Player {
     canvas.fill();
   }
 
-  move(direction) {
-    const upDown = {
-      up: -15,
-      down: 15
-    }
-    const leftRight = {
-      left: -15,
-      right: 15,
-    }
-    if(upDown[direction]) this.y = this.y + upDown[direction]
-    if(leftRight[direction]) this.x = this.x + leftRight[direction]
+  move() {
+    this.x = this.x + this.xVelocity
+    this.y = this.y + this.yVelocity
+  }
+
+  startMoving(direction) {
+    this.setVelocityVector(direction, 10)
+  }
+
+  stopMoving(direction) {
+    this.setVelocityVector(direction, 0)
+  }
+
+  setVelocityVector(humanDirection, amount) {
+    const {axis, direction} = this.directionsToGrid[humanDirection]
+    this[`${axis}Velocity`] = direction * amount
   }
 }
