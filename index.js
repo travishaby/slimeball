@@ -10,12 +10,33 @@ class Game {
   }
 
   loop() {
-    console.log('wut')
     this.draw()
   }
 
   draw() {
+    this.canvas.fillStyle="#FFFFFF"
+    const {height, width} = this.canvas.canvas
+    this.canvas.fillRect(0, 0, height, width)
     this.player1.draw(this.canvas)
+  }
+
+  handleKeypress(keypressEvent) {
+    switch(keypressEvent.key) {
+      case 'j':
+        player1.move('left')
+        break;
+      case 'l':
+        player1.move('right')
+        break;
+      case 'i':
+        player1.move('up')
+        break;
+      case 'k':
+        player1.move('down')
+        break;
+      default:
+        console.log('that key doesnt do anything...');
+    }
   }
 }
 
@@ -24,9 +45,18 @@ function gameLoop() {
   window.requestAnimationFrame(gameLoop)
 }
 
+function activateListeners(listeners) {
+  listeners.forEach(([eventType, eventHandler]) => {
+    document.addEventListener(eventType, eventHandler, false)
+  })
+}
+
 const root = document.getElementById('root')
 const canvas = root.getContext('2d')
-const player1 = new Player('Travis')
+const player1 = new Player('Travis', 100, 100)
 const game = new Game(player1, 'Lani', canvas)
+
+const listeners = [['keypress', game.handleKeypress]]
+activateListeners(listeners)
 
 gameLoop()
