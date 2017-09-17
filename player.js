@@ -1,8 +1,9 @@
 class Player {
-  constructor(name, x, y, color) {
+  constructor(name, color, start, zone) {
     this.name = name
-    this.x = x
-    this.y = y
+    this.x = start.x
+    this.y = start.y
+    this.zone = zone
     this.color = color
     this.xVelocity = 0
     this.yVelocity = 0
@@ -21,11 +22,11 @@ class Player {
     canvas.fill();
   }
 
-  move(canvas) {
+  move() {
     const xNext = this.x + this.xVelocity
-    if(xNext < canvas.width && xNext > 0) this.x = xNext
+    if(xNext < this.zone.xMax && xNext > this.zone.xOrigin) this.x = xNext
     const yNext = this.y + this.yVelocity
-    if((yNext < canvas.height) && yNext > 0) this.y = yNext
+    if((yNext < this.zone.yMax) && yNext > this.zone.yOrigin) this.y = yNext
   }
 
   startMoving(direction) {

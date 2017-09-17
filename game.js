@@ -21,7 +21,7 @@ class Game {
   }
 
   loop() {
-    this.players().forEach(player => player.move(this.canvas.canvas))
+    this.players().forEach(player => player.move())
     this.draw()
   }
 
