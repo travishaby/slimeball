@@ -21,14 +21,14 @@ class Game {
   }
 
   loop() {
-    this.players().forEach(player => player.move())
+    this.players().forEach(player => player.move(this.canvas.canvas))
     this.draw()
   }
 
   draw() {
     this.canvas.fillStyle="#FFFFFF"
     const {height, width} = this.canvas.canvas
-    this.canvas.fillRect(0, 0, height, width)
+    this.canvas.fillRect(0, 0, width, height)
     this.players().forEach(player => player.draw(this.canvas))
   }
 

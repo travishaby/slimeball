@@ -16,14 +16,16 @@ class Player {
 
   draw(canvas) {
     canvas.beginPath();
-    canvas.arc(this.x, this.y, 50, Math.PI, 2 * Math.PI, false);
+    canvas.arc(this.x, this.y, 40, Math.PI, 2 * Math.PI, false);
     canvas.fillStyle = this.color;
     canvas.fill();
   }
 
-  move() {
-    this.x = this.x + this.xVelocity
-    this.y = this.y + this.yVelocity
+  move(canvas) {
+    const xNext = this.x + this.xVelocity
+    if(xNext < canvas.width && xNext > 0) this.x = xNext
+    const yNext = this.y + this.yVelocity
+    if((yNext < canvas.height) && yNext > 0) this.y = yNext
   }
 
   startMoving(direction) {
