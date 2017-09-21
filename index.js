@@ -9,7 +9,7 @@ const player1Zone = {
 }
 const player1StartCoordinates = {
   x: player1Zone.xOrigin + 100,
-  y: player1Zone.yOrigin + 100
+  y: player1Zone.yOrigin + canvasContext.canvas.height
 }
 const player1 = new Player(
   'Travis',
@@ -26,7 +26,7 @@ const player2Zone = {
 }
 const player2StartCoordinates = {
   x: player2Zone.xOrigin + 100,
-  y: player2Zone.yOrigin + 100
+  y: player2Zone.yOrigin + canvasContext.canvas.height
 }
 const player2 = new Player(
   'Lani',

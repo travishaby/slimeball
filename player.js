@@ -10,8 +10,7 @@ class Player {
     this.directionsToGrid = {
       left: { axis: 'x', direction: -1 },
       right: { axis: 'x', direction: 1 },
-      up: { axis: 'y', direction: -1 },
-      down: { axis: 'y', direction: 1 }
+      up: { axis: 'y', direction: -2 }
     }
   }
 
@@ -25,8 +24,15 @@ class Player {
   move() {
     const xNext = this.x + this.xVelocity
     if(xNext < this.zone.xMax && xNext > this.zone.xOrigin) this.x = xNext
+
+    if(this.y !== this.zone.yMax) this.yVelocity += 1 // gravity
     const yNext = this.y + this.yVelocity
-    if((yNext < this.zone.yMax) && yNext > this.zone.yOrigin) this.y = yNext
+    if(yNext <= this.zone.yMax) {
+      this.y = yNext
+    } else {
+      this.y = this.zone.yMax
+      this.yVelocity = 0
+    }
   }
 
   startMoving(direction) {
@@ -38,6 +44,9 @@ class Player {
   }
 
   setVelocityVector(humanDirection, amount) {
+    // cant jump if youre in the air!
+    if(humanDirection === 'up' && this.y !== this.zone.yMax) return
+
     const {axis, direction} = this.directionsToGrid[humanDirection]
     this[`${axis}Velocity`] = direction * amount
   }

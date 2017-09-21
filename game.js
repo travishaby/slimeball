@@ -7,11 +7,9 @@ class Game {
       a: { player: 'player1', direction: 'left' },
       d: { player: 'player1', direction: 'right' },
       w: { player: 'player1', direction: 'up' },
-      s: { player: 'player1', direction: 'down' },
       j: { player: 'player2', direction: 'left' },
       l: { player: 'player2', direction: 'right' },
       i: { player: 'player2', direction: 'up' },
-      k: { player: 'player2', direction: 'down' }
     }
     this.changePlayerMovement = this.changePlayerMovement.bind(this)
   }
