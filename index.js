@@ -8,7 +8,7 @@ const player1Zone = {
   xMax: canvasContext.canvas.width / 2
 }
 const player1StartCoordinates = {
-  x: player1Zone.xOrigin + 100,
+  x: player1Zone.xOrigin + 101,
   y: player1Zone.yOrigin + canvasContext.canvas.height
 }
 const player1 = new Player(
@@ -35,7 +35,27 @@ const player2 = new Player(
   player2Zone
 )
 
-const game = new Game(player1, player2, canvasContext)
+const netLocation = {
+  xOrigin: (canvasContext.canvas.width / 2) - 9,
+  yOrigin: canvasContext.canvas.height - 50,
+  width: 19,
+  height: 50,
+}
+const net = new Net(netLocation)
+
+const ballStart = {
+  x: player1StartCoordinates,
+  y: player1StartCoordinates - 200
+}
+const ball = new Ball(ballStart)
+
+const gameObjects = {
+  player1: player1,
+  player2: player2,
+  net: net,
+  ball: ball
+}
+const game = new Game(gameObjects, canvasContext)
 
 function activateListeners(listeners) {
   listeners.forEach(([eventType, eventHandler]) => {

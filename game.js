@@ -1,7 +1,9 @@
 class Game {
-  constructor(player1, player2, canvas) {
-    this.player1 = player1
-    this.player2 = player2
+  constructor(objects, canvas) {
+    this.player1 = objects.player1
+    this.player2 = objects.player2
+    this.net = objects.net
+    this.ball = objects.ball
     this.canvas = canvas
     this.playerMovements = {
       a: { player: 'player1', direction: 'left' },
@@ -14,20 +16,24 @@ class Game {
     this.changePlayerMovement = this.changePlayerMovement.bind(this)
   }
 
-  players() {
-    return [this.player1, this.player2]
+  drawableObjects() {
+    return [this.player1, this.player2, this.ball, this.net]
+  }
+
+  movingObjects() {
+    return [this.player1, this.player2, this.ball]
   }
 
   loop() {
-    this.players().forEach(player => player.move())
+    this.movingObjects().forEach(object => object.move())
     this.draw()
   }
 
   draw() {
-    this.canvas.fillStyle="#FFFFFF"
+    this.canvas.fillStyle = "#FFFFFF"
     const {height, width} = this.canvas.canvas
     this.canvas.fillRect(0, 0, width, height)
-    this.players().forEach(player => player.draw(this.canvas))
+    this.drawableObjects().forEach(object => object.draw(this.canvas))
   }
 
   handleKeydown(keydownEvent) {
