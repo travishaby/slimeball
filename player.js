@@ -3,6 +3,7 @@ class Player {
     this.name = name
     this.x = start.x
     this.y = start.y
+    this.radius = 40
     this.zone = zone
     this.color = color
     this.xVelocity = 0
@@ -14,16 +15,24 @@ class Player {
     }
   }
 
+  rightEdge() {
+    return this.zone.xMax - this.radius
+  }
+
+  leftEdge() {
+    return this.zone.xOrigin + this.radius
+  }
+
   draw(canvas) {
     canvas.beginPath();
-    canvas.arc(this.x, this.y, 40, Math.PI, 2 * Math.PI, false);
+    canvas.arc(this.x, this.y, this.radius, Math.PI, 2 * Math.PI, false);
     canvas.fillStyle = this.color;
     canvas.fill();
   }
 
   move() {
     const xNext = this.x + this.xVelocity
-    if(xNext < this.zone.xMax && xNext > this.zone.xOrigin) this.x = xNext
+    if(xNext <= this.rightEdge() && xNext > this.leftEdge()) this.x = xNext
 
     if(this.y !== this.zone.yMax) this.yVelocity += 1 // gravity
     const yNext = this.y + this.yVelocity
