@@ -26,6 +26,7 @@ class Game {
 
   loop() {
     this.movingObjects().forEach(object => object.move())
+    this.handleCollisions()
     this.draw()
   }
 
@@ -50,5 +51,25 @@ class Game {
       const { player, direction } = keyMapping
       this[player][action](direction)
     }
+  }
+
+  handleCollisions() {
+    const objects = this.movingObjects()
+    objects.forEach(firstObject => {
+      this.movingObjects().forEach(secondObject => {
+        if (firstObject.name !== secondObject.name) {
+          this.checkForCollision(firstObject, secondObject)
+        }
+      })
+    })
+  }
+
+  checkForCollision(first, second) {
+    const xCollision = first.rightSideX() >= second.leftSideX()
+      && first.leftSideX() < second.rightSideX()
+    if (xCollision) {
+      console.log('COLLISION!')
+    }
+
   }
 }

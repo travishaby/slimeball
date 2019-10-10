@@ -2,9 +2,19 @@ class Ball {
   constructor(start) {
     this.x = start.x
     this.y = start.y
+    this.radius = 10
     this.zone = start.zone
     this.xVelocity = 0
     this.yVelocity = 0
+    this.name = 'ball'
+  }
+
+  leftSideX() {
+    return this.x - this.radius
+  }
+
+  rightSideX() {
+    return this.x + this.radius
   }
 
   move() {
@@ -21,7 +31,7 @@ class Ball {
 
   draw(canvas) {
     canvas.beginPath();
-    canvas.arc(this.x, this.y, 10, Math.PI, 4 * Math.PI, false);
+    canvas.arc(this.x, this.y, this.radius, Math.PI, 4 * Math.PI, false);
     canvas.fillStyle = 'black';
     canvas.fill();
   }

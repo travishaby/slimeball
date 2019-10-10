@@ -15,11 +15,19 @@ class Player {
     }
   }
 
-  rightEdge() {
+  leftSideX() {
+    return this.x - this.radius
+  }
+
+  rightSideX() {
+    return this.x + this.radius
+  }
+
+  rightZoneEdge() {
     return this.zone.xMax - this.radius
   }
 
-  leftEdge() {
+  leftZoneEdge() {
     return this.zone.xOrigin + this.radius
   }
 
@@ -32,7 +40,7 @@ class Player {
 
   move() {
     const xNext = this.x + this.xVelocity
-    if(xNext <= this.rightEdge() && xNext > this.leftEdge()) this.x = xNext
+    if(xNext <= this.rightZoneEdge() && xNext > this.leftZoneEdge()) this.x = xNext
 
     if(this.y !== this.zone.yMax) this.yVelocity += 1 // gravity
     const yNext = this.y + this.yVelocity

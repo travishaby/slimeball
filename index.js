@@ -74,6 +74,8 @@ activateListeners(listeners)
 
 function gameLoop() {
   game.loop()
-  window.requestAnimationFrame(gameLoop)
+  setTimeout(function() {
+    window.requestAnimationFrame(gameLoop)
+  }, 80)
 }
 gameLoop()
