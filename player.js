@@ -23,6 +23,15 @@ class Player {
     return this.x + this.radius
   }
 
+  topY() {
+    return this.y - this.radius
+  }
+
+  bottomY() {
+    return this.y // slime is flat on the bottom
+  }
+
+
   rightZoneEdge() {
     return this.zone.xMax - this.radius
   }

@@ -67,7 +67,9 @@ class Game {
   checkForCollision(first, second) {
     const xCollision = first.rightSideX() >= second.leftSideX()
       && first.leftSideX() < second.rightSideX()
-    if (xCollision) {
+    const yCollision = first.topY() <= second.bottomY()
+      && first.bottomY() > second.topY()
+    if (xCollision && yCollision) {
       console.log('COLLISION!')
     }
 

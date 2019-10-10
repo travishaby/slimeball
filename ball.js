@@ -17,6 +17,14 @@ class Ball {
     return this.x + this.radius
   }
 
+  topY() {
+    return this.y - this.radius
+  }
+
+  bottomY() {
+    return this.y + this.radius
+  }
+
   move() {
     if(this.y !== this.zone.yMax) this.yVelocity += 1 // gravity
 
