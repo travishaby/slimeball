@@ -43,17 +43,24 @@ const netLocation = {
 }
 const net = new Net(netLocation)
 
-const ballStart = {
-  x: player1StartCoordinates,
-  y: player1StartCoordinates - 200
+const ballZone = {
+  xOrigin: 0,
+  yOrigin: 0,
+  yMax: canvasContext.canvas.height,
+  xMax: canvasContext.canvas.width
 }
-const ball = new Ball(ballStart)
+const ballState = {
+  x: player1StartCoordinates.x,
+  y: player1StartCoordinates.y - 200,
+  zone: ballZone
+}
+const ball = new Ball(ballState)
 
 const gameObjects = {
-  player1: player1,
-  player2: player2,
-  net: net,
-  ball: ball
+  player1,
+  player2,
+  net,
+  ball
 }
 const game = new Game(gameObjects, canvasContext)
 
