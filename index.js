@@ -76,6 +76,6 @@ function gameLoop() {
   game.loop()
   setTimeout(function() {
     window.requestAnimationFrame(gameLoop)
-  }, 80)
+  }, 30)
 }
 gameLoop()

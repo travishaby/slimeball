@@ -76,4 +76,10 @@ class Player {
     const {axis, direction} = this.directionsToGrid[humanDirection]
     this[`${axis}Velocity`] = direction * amount
   }
+
+  currentXAxisHumanDirection() {
+    if(this.xVelocity > 0) return 'right'
+    if(this.xVelocity < 0) return 'left'
+    return null
+  }
 }

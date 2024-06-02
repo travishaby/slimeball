@@ -70,7 +70,22 @@ class Game {
     const yCollision = first.topY() <= second.bottomY()
       && first.bottomY() > second.topY()
     if (xCollision && yCollision) {
-      console.log('COLLISION!')
+      if (first.name === 'ball') {
+        first.setVelocityVector('up', 10)
+        const currentX = second.currentXAxisHumanDirection()
+        if (currentX) {
+          console.log('currentX', currentX)
+          console.log('second.xVelocity', second.xVelocity)
+          first.setVelocityVector(currentX, Math.abs(second.xVelocity))
+        }
+      }
+      if (second.name === 'ball') {
+        second.setVelocityVector('up', 10)
+        const currentX = first.currentXAxisHumanDirection()
+        if (currentX) {
+          second.setVelocityVector(currentX, Math.abs(first.xVelocity))
+        }
+      }
     }
 
   }
